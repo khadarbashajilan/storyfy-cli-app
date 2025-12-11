@@ -14,3 +14,5 @@ yargs(hideBin(process.argv))
 )
 .demandCommand(1)
 .parse();
+
+import "./src/command.js"
