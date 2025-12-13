@@ -44,6 +44,16 @@ export const deleteStory = async (id) => {
   if (targetStory.length === 0) {
     return;
   }
-  console.log("Story Successfully Deleted")
+  console.log("Story Successfully Deleted");
   return await saveDB({ stories: stories.filter((s) => s.id != id) });
+};
+
+export const clearAll = async () => {
+  const data = await getAllstories();
+  if (data.length === 0) {
+    console.log("No Stories Found");
+    return;
+  }
+  console.log("All Stories deleted");
+  await saveDB({ stories: [] });
 };

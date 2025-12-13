@@ -1,6 +1,7 @@
 import yargs from "yargs";
 import { hideBin } from "yargs/helpers";
 import {
+  clearAll,
   deleteStory,
   findStories,
   getAllstories,
@@ -71,6 +72,14 @@ yargs(hideBin(process.argv))
         console.log("No stories found");
         return;
       }
+    }
+  )
+  .command(
+    "clear",
+    "delete all the stories",
+    () => {},
+    async (argv) => {
+      await clearAll();
     }
   )
   .demandCommand(1)
