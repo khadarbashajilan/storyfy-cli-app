@@ -43,6 +43,10 @@ yargs(hideBin(process.argv))
     },
     async(argv) => {
         const targetStory = await findStories(argv.id);
+        if(!targetStory){
+            console.log("Invalid Id")
+            return
+        }
         listStories(targetStory)
     }
   )
@@ -57,7 +61,10 @@ yargs(hideBin(process.argv))
     },
     async(argv)=> {
         const targetStory = await deleteStory(argv.id);
-        listStories(targetStory)
+        if(!targetStory){
+            console.log("Invalid Id")
+            return
+        }
     }
   )
   .demandCommand(1)

@@ -2,21 +2,21 @@
   "stories": [
     {
       "tags": [
-        "enjoy",
-        "fun",
-        "peace"
+        "a",
+        "b",
+        "c"
       ],
       "content": "story",
-      "id": 1765613892006
+      "id": 1765616552116
     },
     {
       "tags": [
-        "y",
         "a",
-        "b"
+        "b",
+        "c"
       ],
-      "content": "xz",
-      "id": 1765614645089
+      "content": "story1",
+      "id": 1765616561208
     }
   ]
 }

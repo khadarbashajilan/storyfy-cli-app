@@ -31,9 +31,18 @@ export const listStories = (stories) => {
 
 export const findStories = async (id) => {
   const stories = await getAllstories();
-  return stories.filter((s) => s.id === id);
+  const targetStory =  stories.filter((s) => s.id === id);
+  if(targetStory.length === 0){
+    return
+  }
+  return targetStory
 };
 
 export const deleteStory = async (id) => {
-  return await delDB(id);
+    const stories = await getAllstories()
+    const targetStory = stories.filter((s)=> s.id === id)
+    if(targetStory.length === 0){
+        return
+    }
+    return await delDB(id)
 };
