@@ -22,6 +22,14 @@ export const insertDB = async (data) => {
   return data;
 };
 
+export const delDB = async (id) =>{
+  let db = await getDB();
+  db.stories = db.stories.filter((s)=> s.id != id)
+  await saveDB(db)
+  console.log("Story Successfully Deleted")
+  return db.stories
+}
+
 // For debugging :
 // (async () => {
 //   try {

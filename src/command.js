@@ -1,6 +1,6 @@
 import yargs from "yargs";
 import { hideBin } from "yargs/helpers";
-import { getAllstories, listStories, newStory } from "./stories.js";
+import { deleteStory, findStories, getAllstories, listStories, newStory } from "./stories.js";
 
 yargs(hideBin(process.argv))
   .command(
@@ -30,6 +30,34 @@ yargs(hideBin(process.argv))
     async (argv) => {
       const stories = await getAllstories();
       listStories(stories)
+    }
+  )
+  .command(
+    "find <id>",
+    "find a story",
+    (yargs)=>{
+        return yargs.positional('id',{
+            describe:"Id to find a story",
+            type: "number"
+        })
+    },
+    async(argv) => {
+        const targetStory = await findStories(argv.id);
+        listStories(targetStory)
+    }
+  )
+  .command(
+    "delete <id>",
+    "delete a story",
+    (yargs)=>{
+        return yargs.positional('id',{
+            describe : "Id to delete a story",
+            type :"number"
+        })
+    },
+    async(argv)=> {
+        const targetStory = await deleteStory(argv.id);
+        listStories(targetStory)
     }
   )
   .demandCommand(1)

@@ -1,4 +1,4 @@
-import { insertDB, getDB } from "./db.js";
+import { insertDB, getDB,  delDB } from "./db.js";
 
 export const newStory = async (story, tags) => {
   const data = {
@@ -12,7 +12,7 @@ export const newStory = async (story, tags) => {
 
 export const getAllstories = async () => {
   const db = await getDB();
-  return db.stories; 
+  return db.stories;
 };
 
 export const listStories = (stories) => {
@@ -27,4 +27,13 @@ export const listStories = (stories) => {
     console.log("Tags : ", story.tags || [].join(","));
     console.log("Story Content :", story.content);
   });
+};
+
+export const findStories = async (id) => {
+  const stories = await getAllstories();
+  return stories.filter((s) => s.id === id);
+};
+
+export const deleteStory = async (id) => {
+  return await delDB(id);
 };
