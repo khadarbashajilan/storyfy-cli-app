@@ -21,29 +21,3 @@ export const insertDB = async (data) => {
   await saveDB(db);
   return data;
 };
-
-export const delDB = async (id) =>{
-  let db = await getDB();
-  db.stories = db.stories.filter((s)=> s.id != id)
-  await saveDB(db)
-  console.log("Story Successfully Deleted")
-  return db.stories
-}
-
-// For debugging :
-// (async () => {
-//   try {
-//     // First read
-//     let data = await getDB();
-//     console.log("Initial DB:", data);
-
-//     // Insert data
-//     await insertDB(2);
-
-//     // Second read
-//     data = await getDB();
-//     console.log("Updated DB:", data);
-//   } catch (err) {
-//     console.error("Error:", err);
-//   }
-// })();

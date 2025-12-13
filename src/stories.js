@@ -1,4 +1,4 @@
-import { insertDB, getDB,  delDB } from "./db.js";
+import { insertDB, getDB, saveDB } from "./db.js";
 
 export const newStory = async (story, tags) => {
   const data = {
@@ -31,18 +31,19 @@ export const listStories = (stories) => {
 
 export const findStories = async (id) => {
   const stories = await getAllstories();
-  const targetStory =  stories.filter((s) => s.id === id);
-  if(targetStory.length === 0){
-    return
+  const targetStory = stories.filter((s) => s.id === id);
+  if (targetStory.length === 0) {
+    return;
   }
-  return targetStory
+  return targetStory;
 };
 
 export const deleteStory = async (id) => {
-    const stories = await getAllstories()
-    const targetStory = stories.filter((s)=> s.id === id)
-    if(targetStory.length === 0){
-        return
-    }
-    return await delDB(id)
+  const stories = await getAllstories();
+  const targetStory = stories.filter((s) => s.id === id);
+  if (targetStory.length === 0) {
+    return;
+  }
+  console.log("Story Successfully Deleted")
+  return await saveDB({ stories: stories.filter((s) => s.id != id) });
 };

@@ -1,6 +1,12 @@
 import yargs from "yargs";
 import { hideBin } from "yargs/helpers";
-import { deleteStory, findStories, getAllstories, listStories, newStory } from "./stories.js";
+import {
+  deleteStory,
+  findStories,
+  getAllstories,
+  listStories,
+  newStory,
+} from "./stories.js";
 
 yargs(hideBin(process.argv))
   .command(
@@ -29,42 +35,42 @@ yargs(hideBin(process.argv))
     () => {},
     async (argv) => {
       const stories = await getAllstories();
-      listStories(stories)
+      listStories(stories);
     }
   )
   .command(
     "find <id>",
     "find a story",
-    (yargs)=>{
-        return yargs.positional('id',{
-            describe:"Id to find a story",
-            type: "number"
-        })
+    (yargs) => {
+      return yargs.positional("id", {
+        describe: "Id to find a story",
+        type: "number",
+      });
     },
-    async(argv) => {
-        const targetStory = await findStories(argv.id);
-        if(!targetStory){
-            console.log("Invalid Id")
-            return
-        }
-        listStories(targetStory)
+    async (argv) => {
+      const targetStory = await findStories(argv.id);
+      if (!targetStory) {
+        console.log("Story not Found");
+        return;
+      }
+      listStories(targetStory);
     }
   )
   .command(
     "delete <id>",
     "delete a story",
-    (yargs)=>{
-        return yargs.positional('id',{
-            describe : "Id to delete a story",
-            type :"number"
-        })
+    (yargs) => {
+      return yargs.positional("id", {
+        describe: "Id to delete a story",
+        type: "number",
+      });
     },
-    async(argv)=> {
-        const targetStory = await deleteStory(argv.id);
-        if(!targetStory){
-            console.log("Invalid Id")
-            return
-        }
+    async (argv) => {
+      const targetStory = await deleteStory(argv.id);
+      if (!targetStory) {
+        console.log("No stories found");
+        return;
+      }
     }
   )
   .demandCommand(1)
