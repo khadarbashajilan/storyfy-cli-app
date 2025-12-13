@@ -1,10 +1,13 @@
 {
   "stories": [
-    2,
-    2,
-    2,
-    2,
-    2,
-    2
+    {
+      "tags": [
+        "solitude",
+        " moody",
+        " focused"
+      ],
+      "content": "story",
+      "id": 1765609056293
+    }
   ]
 }
